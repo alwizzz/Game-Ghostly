@@ -15,7 +15,7 @@ TagManager:
   - Human Vision
   - Ghost Presence
   - Human Despawner
-  - 
+  - Priest Prayer
   - 
   - 
   - 
@@ -44,6 +44,6 @@ TagManager:
   - name: Click Layer
     uniqueID: 3593258633
     locked: 0
-  - name: Ghost and Mobs
+  - name: Ghost and Humans
     uniqueID: 2608491733
     locked: 0

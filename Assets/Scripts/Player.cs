@@ -14,22 +14,29 @@ public class Player : MonoBehaviour
     public bool isInterruptable = true;
     public bool isHiding = true;
     public bool isChasing = false;
+    public bool isInPrayerAoE = false;
     [Header("Animator Params")]
     public bool isDevouring = false; 
 
-    [Header("Caches")]
+    //[Header("Caches")]
     int defaultSortingLayer;
     float moveDestination;
     SpriteRenderer spriteRenderer;
     BoxCollider2D presenceCollider;
     Animator animator;
     Human chasedHuman;
+    HealthBar healthBar;
 
-    private void Start()
+    protected virtual void Awake()
     {
         spriteRenderer = transform.Find("Body").GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         presenceCollider = transform.Find("Presence").GetComponent<BoxCollider2D>();
+        healthBar = FindObjectOfType<HealthBar>();
+    }
+
+    private void Start()
+    {
 
         defaultSortingLayer = spriteRenderer.sortingOrder;
         moveDestination = transform.position.x;
@@ -166,6 +173,7 @@ public class Player : MonoBehaviour
         UpdateAnimatorParam();
 
         chasedHuman.Die();
+        healthBar.AddHealth(chasedHuman.grantedHealth);
         chasedHuman = null; // delete chache
 
         isChasing = false;
@@ -182,5 +190,17 @@ public class Player : MonoBehaviour
     void UpdateChasedHumanPosition()
     {
         moveDestination = chasedHuman.transform.position.x;
+    }
+
+    public void EnteredPrayerAoE(float drainSpeed)
+    {
+        isInPrayerAoE = true;
+        healthBar.StartDrainHealthFromPrayer(drainSpeed);
+    }
+
+    public void ExitedPrayerAoE()
+    {
+        isInPrayerAoE = false;
+        healthBar.StopDrainHealthFromPrayer();
     }
 }

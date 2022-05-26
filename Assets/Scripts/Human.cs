@@ -12,8 +12,11 @@ public class Human : MonoBehaviour
     public float walkDurationMax = 11f;
     public float idleDurationMin = 2f;
     public float idleDurationMax = 5f;
-    public float panicDuration = 2f;
+    public float panicDuration = 1.5f;
     public int changeFacingDirectionProbability = 1;
+
+    [Header("Health Values")]
+    public float grantedHealth = 5f;
 
     [Header("States")]
     public bool isBeingChased = false;
@@ -26,12 +29,12 @@ public class Human : MonoBehaviour
     public bool isIdling = false;
     //public bool isForcedIdling = false;
 
-    [Header("Caches")]
-    Player player;
-    Animator animator;
-    SpriteRenderer spriteRenderer;
-    SpriteRenderer exclamationMarkRenderer;
-    HumanVision thisHumanVision;
+    //[Header("Caches")]
+    protected Player player;
+    protected Animator animator;
+    protected SpriteRenderer spriteRenderer;
+    protected SpriteRenderer exclamationMarkRenderer;
+    protected HumanVision thisHumanVision;
 
     //[Header("Configs")]
     //[Header("States")]
@@ -39,23 +42,19 @@ public class Human : MonoBehaviour
     //[Header("Caches")]
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        player = FindObjectOfType<Player>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = transform.Find("Body").GetComponent<SpriteRenderer>();
-        thisHumanVision = transform.Find("Vision").GetComponent<HumanVision>();
-        exclamationMarkRenderer = transform.Find("Exclamation Mark").GetComponent<SpriteRenderer>();
+        SetupHumanCache();
     }
 
-    private void Start()
+    protected void Start()
     {
         UpdateAnimatorParam();
         UpdateFaceDirection();
         StartCoroutine(WalkAndIdle());
     }
 
-    private void Update()
+    protected void Update()
     {
         if (!isBeingDevoured)
         {
@@ -64,7 +63,16 @@ public class Human : MonoBehaviour
         }
     }
 
-    IEnumerator WalkAndIdle()
+    protected void SetupHumanCache()
+    {
+        player = FindObjectOfType<Player>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = transform.Find("Body").GetComponent<SpriteRenderer>();
+        thisHumanVision = transform.Find("Vision").GetComponent<HumanVision>();
+        exclamationMarkRenderer = transform.Find("Exclamation Mark").GetComponent<SpriteRenderer>();
+    }
+
+    protected virtual IEnumerator WalkAndIdle()
     {
         while (true) // only stop when StopCoroutine called from outside
         {
@@ -81,13 +89,14 @@ public class Human : MonoBehaviour
         }
     }
 
-    public void Alerted()
+    public virtual void Alerted()
     {
+        //Debug.Log("alerted in Human Script");
         StopAllCoroutines();
         StartCoroutine(PanicAndRun());
     }
 
-    IEnumerator PanicAndRun()
+    protected IEnumerator PanicAndRun()
     {
         SetToPanic();
         exclamationMarkRenderer.enabled = true;
@@ -100,23 +109,23 @@ public class Human : MonoBehaviour
         SetToRunning();
     }
 
-    void Walk()
+    protected void Walk()
     {
         transform.Translate(Time.deltaTime * walkSpeed * DirectionVector());
     }
 
-    void Run()
+    protected void Run()
     {
         transform.Translate(Time.deltaTime * runSpeed * DirectionVector());
     }
 
-    void SetToWalking() { SetActiveMovementState("isWalking"); }
-    void SetToIdling() { SetActiveMovementState("isIdling"); }
-    void SetToPanic() { SetActiveMovementState("isPanic"); }
-    void SetToRunning() { SetActiveMovementState("isRunning"); }
+    protected void SetToWalking() { SetActiveMovementState("isWalking"); }
+    protected void SetToIdling() { SetActiveMovementState("isIdling"); }
+    protected void SetToPanic() { SetActiveMovementState("isPanic"); }
+    protected void SetToRunning() { SetActiveMovementState("isRunning"); }
 
 
-    void SetNewFaceDirection()
+    protected void SetNewFaceDirection()
     {
         // new face direction is leaning to previous value 
         int rand = Random.Range(0, 99);
@@ -131,7 +140,7 @@ public class Human : MonoBehaviour
         UpdateFaceDirection();
     }
 
-    void UpdateFaceDirection()
+    protected void UpdateFaceDirection()
     {        
         if (!isFacingRight)
         {
@@ -142,9 +151,6 @@ public class Human : MonoBehaviour
             spriteRenderer.flipX = true;
             thisHumanVision.FlipVisionCollider(true);
         }
-
-
-
     }
 
     Vector2 DirectionVector()
@@ -152,37 +158,22 @@ public class Human : MonoBehaviour
         return (isFacingRight) ? Vector2.right : Vector2.left;
     }
 
-    void SetActiveMovementState(string varName)
+    protected virtual void SetActiveMovementState(string varName)
     {
-        if(varName == "isWalking")
-        {
-            isWalking = true;
-            isRunning = false;
-            isIdling = false;
-            isPanic = false;
-        } else if(varName == "isRunning")
-        {
-            isWalking = false;
-            isRunning = true;
-            isIdling = false;
-            isPanic = false;
-        } else if (varName == "isIdling")
-        {
-            isWalking = false;
-            isRunning = false;
-            isIdling = true;
-            isPanic = false;
-        } else if (varName == "isPanic")
-        {
-            isWalking = false;
-            isRunning = false;
-            isIdling = false;
-            isPanic = true;
-        } 
+        isWalking = false;
+        isRunning = false;
+        isIdling = false;
+        isPanic = false;
+
+        if (varName == "isWalking") { isWalking = true; }
+        else if (varName == "isRunning") { isRunning = true; }
+        else if (varName == "isIdling") { isIdling = true; }
+        else if (varName == "isPanic") { isPanic = true; }
+
         UpdateAnimatorParam();
     }
 
-    void UpdateAnimatorParam()
+    protected virtual void UpdateAnimatorParam()
     {
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isIdling", isIdling);
@@ -190,7 +181,7 @@ public class Human : MonoBehaviour
         animator.SetBool("isPanic", isPanic);
     }
 
-    private void OnMouseDown()
+    protected void OnMouseDown()
     {
         //Debug.Log("clicked on Human");
         isBeingChased = true;

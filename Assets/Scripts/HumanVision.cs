@@ -18,7 +18,7 @@ public class HumanVision : MonoBehaviour
     public bool ghostInVision;
 
     // CACHE
-    Human thisHuman;
+    public Human thisHuman;
 
     // Start is called before the first frame update
     void Start()
@@ -42,12 +42,12 @@ public class HumanVision : MonoBehaviour
             
     }
 
-    private void OnTriggerEnter2D(Collider2D ghostPresenceCollider)
+    private void OnTriggerEnter2D()
     {
         ghostInVision = true;
     }
 
-    private void OnTriggerExit2D(Collider2D ghostPresenceCollider)
+    private void OnTriggerExit2D()
     {
         ghostInVision = false;
     }

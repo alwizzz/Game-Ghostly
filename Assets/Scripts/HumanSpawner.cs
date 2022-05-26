@@ -20,15 +20,40 @@ public class HumanSpawner : MonoBehaviour
     //STATES
     public bool isFacingRight = false;
 
-    //CACHE
-    public GameObject humanPrefab;
+    //CACHE 
+    public Human humanPrefab;
+    public Human priestPrefab;
+
+    public LevelConfig levelConfig;
+
+    void Awake()
+    {
+        
+    }
 
     IEnumerator Start()
     {
+        levelConfig = FindObjectOfType<LevelMaster>().GetLevelConfig();
+        Setup();
+
         var firstSpawnDelay = Random.Range(firstSpawnDelayMin, firstSpawnDelayMax);
         yield return new WaitForSeconds(firstSpawnDelay);
 
         StartCoroutine(Spawning());
+    }
+
+    void Setup()
+    {
+        humanCount = levelConfig.humanCount;
+        firstSpawnDelayMin = levelConfig.firstSpawnDelayMin;
+        firstSpawnDelayMax = levelConfig.firstSpawnDelayMax;
+        spawnGroupIntervalMin = levelConfig.spawnGroupIntervalMin;
+        spawnGroupIntervalMax = levelConfig.spawnGroupIntervalMax;
+        spawnGroupMin = levelConfig.spawnGroupMin;
+        spawnGroupMax = levelConfig.spawnGroupMax;
+        spawnGroupIntervalMin = levelConfig.spawnGroupIntervalMin;
+        spawnGroupIntervalMax = levelConfig.spawnGroupIntervalMax;
+        spawnInGroupProbability = levelConfig.spawnInGroupProbability;
     }
 
     IEnumerator Spawning()
@@ -50,7 +75,7 @@ public class HumanSpawner : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnGroup(GameObject prefab, int count)
+    IEnumerator SpawnGroup(Human prefab, int count)
     {
         //Debug.Log("spawned in group from" + gameObject.name);
         for(int i=0; i<count; i++)
@@ -61,16 +86,16 @@ public class HumanSpawner : MonoBehaviour
         }
     }
 
-    void SpawnSingle(GameObject prefab)
+    void SpawnSingle(Human prefab)
     { 
         //Debug.Log("spawned single from" + gameObject.name);
         Spawn(prefab);
     }
 
-    void Spawn(GameObject prefabToBeSpawned)
+    void Spawn(Human prefabToBeSpawned)
     {
         var spawned = Instantiate(
-            prefabToBeSpawned,
+            prefabToBeSpawned.gameObject,
             transform.position,
             Quaternion.identity
         );
