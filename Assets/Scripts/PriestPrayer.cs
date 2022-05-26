@@ -20,14 +20,14 @@ public class PriestPrayer : MonoBehaviour
 
     private void OnTriggerEnter2D()
     {
-        Debug.Log("ghost enter aoe");
+        //Debug.Log("ghost enter aoe of " + priest.gameObject.name);
         player.EnteredPrayerAoE(priest.prayerDrainSpeed);
     }
 
     private void OnTriggerExit2D()
     {
-        Debug.Log("ghost exit aoe");
-        player.ExitedPrayerAoE();
+        //Debug.Log("ghost exit aoe of " + priest.gameObject.name);
+        player.ExitedPrayerAoE(priest.prayerDrainSpeed);
     }
 
     public void ActivatePrayerAoE()

@@ -85,6 +85,11 @@ public class HealthBar : MonoBehaviour
         isDrainingFromPrayer = false;
     }
 
+    public void ModifyPrayerDrainSpeed(float amount)
+    {
+        prayerHealthDrainSpeed += amount;
+    }
+
     void DrainHealthFromPrayer()
     {
         currentHealth -= Time.deltaTime * prayerHealthDrainSpeed;

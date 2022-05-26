@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
 
     [Header("Configs")]
     public float moveSpeed = 10f;
+    public int prayerAoECount = 0;
+    public float defaultYvalue;
+    public float devourYOffset = 0.1f;
 
     [Header("States")]
     public bool isMoving = false;
@@ -40,6 +43,7 @@ public class Player : MonoBehaviour
 
         defaultSortingLayer = spriteRenderer.sortingOrder;
         moveDestination = transform.position.x;
+        defaultYvalue = transform.position.y;
 
         UpdateAnimatorParam();
         UpdatePresenceCollider();
@@ -163,12 +167,14 @@ public class Player : MonoBehaviour
         isDevouring = true;
         UpdateAnimatorParam();
         chasedHuman.BeingDevoured();
+        MoveToDevouredHumanYValue(chasedHuman);
 
         spriteRenderer.sortingOrder = 10; // so it will appear on top of human
     }
 
     public void DevourFinished() // called by Ghost Devour animation event
     {
+        BackToDefaultYValue();
         isDevouring = false;
         UpdateAnimatorParam();
 
@@ -180,6 +186,16 @@ public class Player : MonoBehaviour
         spriteRenderer.sortingOrder = defaultSortingLayer; // back to default 
 
         isInterruptable = true;
+    }
+
+    void MoveToDevouredHumanYValue(Human chasedHuman)
+    {
+        transform.position = new Vector2(transform.position.x, chasedHuman.transform.position.y - devourYOffset);
+    }
+    
+    void BackToDefaultYValue()
+    {
+        transform.position = new Vector2(transform.position.x, defaultYvalue);
     }
 
     void UpdatePresenceCollider()
@@ -194,13 +210,27 @@ public class Player : MonoBehaviour
 
     public void EnteredPrayerAoE(float drainSpeed)
     {
-        isInPrayerAoE = true;
-        healthBar.StartDrainHealthFromPrayer(drainSpeed);
+        prayerAoECount++;
+        if (!isInPrayerAoE) //currently not in aoe
+        {
+            isInPrayerAoE = true;
+            healthBar.StartDrainHealthFromPrayer(drainSpeed);
+        } else //already in aoe
+        {
+            healthBar.ModifyPrayerDrainSpeed(+drainSpeed);
+        }
     }
 
-    public void ExitedPrayerAoE()
+    public void ExitedPrayerAoE(float drainSpeed)
     {
-        isInPrayerAoE = false;
-        healthBar.StopDrainHealthFromPrayer();
+        prayerAoECount--;
+        if(prayerAoECount <= 0)
+        {
+            isInPrayerAoE = false;
+            healthBar.StopDrainHealthFromPrayer();
+        } else
+        {
+            healthBar.ModifyPrayerDrainSpeed(-drainSpeed);
+        }
     }
 }

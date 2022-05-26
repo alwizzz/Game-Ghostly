@@ -23,8 +23,10 @@ public class HumanSpawner : MonoBehaviour
     //CACHE 
     public Human humanPrefab;
     public Human priestPrefab;
-
     public LevelConfig levelConfig;
+
+    //COLLECTION
+    float[] lanes = new float[] { 1f, 0.8f, 0.6f };
 
     void Awake()
     {
@@ -94,15 +96,36 @@ public class HumanSpawner : MonoBehaviour
 
     void Spawn(Human prefabToBeSpawned)
     {
+        int laneIndex = GetRandomLaneIndex();
+        Vector3 spawnPosition = new Vector3(transform.position.x, lanes[laneIndex], 0);
+
         var spawned = Instantiate(
             prefabToBeSpawned.gameObject,
-            transform.position,
+            spawnPosition,
             Quaternion.identity
         );
         spawned.GetComponent<Human>().isFacingRight = this.isFacingRight;
+        spawned.transform.Find("Body").GetComponent<SpriteRenderer>().sortingOrder = laneIndex;
         spawned.transform.parent = transform;
 
         humanCount--;
+    }
+
+    int GetRandomLaneIndex()
+    {
+        var rand = Random.value;
+        if(rand > 0 && rand <= 0.33f)
+        {
+            return 0;
+        } 
+        else if(rand > 0.33f && rand <= 0.66f)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
     }
 
 }

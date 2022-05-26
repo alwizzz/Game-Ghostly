@@ -184,8 +184,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 426127389
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0caf466afb3b4c342b972fc884192e48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -464,7 +464,7 @@ MonoBehaviour:
   panicDuration: 1.5
   changeFacingDirectionProbability: 1
   grantedHealth: 5
-  isBeingChased: 0
+  isBeingChased: 1
   isBeingDevoured: 0
   isPanic: 0
   isFacingRight: 0
@@ -474,5 +474,5 @@ MonoBehaviour:
   prayDurationMin: 2
   prayDurationMax: 5
   prayerDrainSpeed: 2
-  isPraying: 0
+  isPraying: 1
   prayingProbability: 90
