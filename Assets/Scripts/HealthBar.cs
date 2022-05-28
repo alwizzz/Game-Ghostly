@@ -16,22 +16,23 @@ public class HealthBar : MonoBehaviour
 
     //CACHES
     RectTransform healthRectTransform;
-    LevelMaster levelMaster;
-    LevelConfig levelConfig;
+    public LevelMaster levelMaster;
+    public LevelConfig levelConfig;
 
 
     private void Awake()
     {
         healthRectTransform = transform.Find("Health").GetComponent<RectTransform>();
         levelMaster = LevelMaster.GetThisSingletonScript();
-        levelConfig = levelMaster.GetLevelConfig();
     }
 
     void Start()
     {
+        levelConfig = levelMaster.GetLevelConfig();
         maxHealth = levelMaster.maxHealth;
         currentHealth = levelMaster.currentHealth;
         healthDrainSpeed = levelConfig.healthDrainSpeed;
+
         UpdateHealthBar();
     }
 

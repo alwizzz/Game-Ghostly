@@ -65,7 +65,10 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("TheGame"); 
     }
 
-
+    public void LoadHowToPlayScene()
+    {
+        SceneManager.LoadScene("HowToPlay");
+    }
 
 
     public void LoadNextLevel()

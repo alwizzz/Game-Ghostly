@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class HidingSpot : MonoBehaviour
 {
-    GameObject ghostEye;
+    [SerializeField] Color ghostOutsideColor;
+    [SerializeField] Color ghostInsideColor;
+
+    SpriteRenderer spriteRenderer;
     Player player;
     void Start()
     {
-        ghostEye = transform.Find("GhostEye").gameObject;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        //ghostEye = transform.Find("GhostEye").gameObject;\
         player = FindObjectOfType<Player>();
     }
 
@@ -17,10 +21,10 @@ public class HidingSpot : MonoBehaviour
     {
         if (player.IsHiding())
         {
-            ghostEye.SetActive(true);
+            spriteRenderer.color = ghostInsideColor;
         } else
         {
-            ghostEye.SetActive(false);
+            spriteRenderer.color = ghostOutsideColor;
         }
 
         if (Input.GetMouseButton(1)) // right click

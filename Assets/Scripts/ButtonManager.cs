@@ -38,6 +38,12 @@ public class ButtonManager : MonoBehaviour
         sceneLoader.LoadTheGameScene(); 
     }
 
+    public void LoadHowToPlayScene()
+    {
+        PlayClickSFX();
+        sceneLoader.LoadHowToPlayScene();
+    }
+
     public void QuitGame()
     {
         PlayClickSFX();
