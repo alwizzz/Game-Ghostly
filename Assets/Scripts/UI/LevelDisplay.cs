@@ -37,9 +37,6 @@ public class LevelDisplay : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log(currentColor.a);
-
-        //currentColor.
     }
 
 

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class HumanDespawner : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D human)
+    private void OnTriggerEnter2D(Collider2D humanCollider)
     {
-        human.gameObject.GetComponent<Human>().GoingToDespawn();
-        Destroy(human.gameObject);
+        var human = humanCollider.gameObject.GetComponent<Human>();
+        human.GoingToDespawn();
+        human.Die();
     }
 }

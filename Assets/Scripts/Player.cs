@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     //[Header("Caches")]
     int defaultSortingLayer;
     float moveDestination;
+    //float grantedHealthCache;
     SpriteRenderer spriteRenderer;
     BoxCollider2D presenceCollider;
     Animator animator;
@@ -167,13 +168,16 @@ public class Player : MonoBehaviour
 
         isChasing = true;
         chasedHuman = target;
-        Debug.Log("chasing " + target);
+        Debug.Log("chasing " + chasedHuman);
+        //grantedHealthCache = chasedHuman.GetGrantedHealth();
         
         MoveToPoint(target.transform.position.x);
     }
 
     public void StopChasing()
     {
+        if (!isInterruptable) { return; }
+
         isChasing = false;
         if (chasedHuman != null) { chasedHuman.SetIsBeingChased(false); }
         chasedHuman = null;
@@ -181,6 +185,7 @@ public class Player : MonoBehaviour
 
     void Devour()
     {
+        Debug.Log("devouring " + chasedHuman);
         isInterruptable = false; // this action is uninterruptable
 
         isDevouring = true;
@@ -194,6 +199,8 @@ public class Player : MonoBehaviour
 
     public void DevourFinished() // called by Ghost Devour animation event
     {
+        Debug.Log("finished devouring " + chasedHuman);
+
         BackToDefaultYValue();
         isDevouring = false;
         UpdateAnimatorParam();

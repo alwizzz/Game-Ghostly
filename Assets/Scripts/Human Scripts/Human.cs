@@ -253,7 +253,8 @@ public class Human : MonoBehaviour
 
     public void Die() // called by Player
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        Destroy(gameObject, 2f);
     }
 
     public void BeingDevoured()
