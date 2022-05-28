@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class HidingSpot : MonoBehaviour
 {
     [SerializeField] Color ghostOutsideColor;
     [SerializeField] Color ghostInsideColor;
 
-    SpriteRenderer spriteRenderer;
+    Image thisImage;
     Player player;
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        thisImage = GetComponent<Image>();
         //ghostEye = transform.Find("GhostEye").gameObject;\
         player = FindObjectOfType<Player>();
     }
@@ -21,10 +23,10 @@ public class HidingSpot : MonoBehaviour
     {
         if (player.IsHiding())
         {
-            spriteRenderer.color = ghostInsideColor;
+            thisImage.color = ghostInsideColor;
         } else
         {
-            spriteRenderer.color = ghostOutsideColor;
+            thisImage.color = ghostOutsideColor;
         }
 
         if (Input.GetMouseButton(1)) // right click

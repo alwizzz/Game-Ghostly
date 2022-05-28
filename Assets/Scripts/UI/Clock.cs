@@ -22,8 +22,6 @@ public class Clock : MonoBehaviour
 
         arrowHourInitialZ = arrowHour.transform.eulerAngles.z;
         arrowMinuteInitialZ = arrowMinute.transform.eulerAngles.z;
-
-
     }
 
     private void Update()
