@@ -57,7 +57,7 @@ MonoBehaviour:
   currentLevelConfig: {fileID: 0}
   levelConfigs:
   - {fileID: 11400000, guid: 4e0d3d6d95cb7dc46908606dcb9d6352, type: 2}
-  - {fileID: 11400000, guid: 333c0615e679b7943b36568c84449a21, type: 2}
+  - {fileID: 11400000, guid: 0159bfbf3940f4f4083fb1603cea0e52, type: 2}
   - {fileID: 11400000, guid: 39478bf796f55e2408f1cb6c23592e93, type: 2}
   humanGrantedHealth: 5
   priestGrantedHealth: 7
