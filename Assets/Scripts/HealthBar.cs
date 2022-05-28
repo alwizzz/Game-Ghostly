@@ -5,29 +5,33 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour
 {
     //CONFIGS
-    public float maxHealth = 100f;
-    public float currentHealth;
-    public float healthDrainSpeed = 10f;
-    public float prayerHealthDrainSpeed = 0f;
+    [SerializeField] float maxHealth = 100f;
+    [SerializeField] float currentHealth;
+    [SerializeField] float healthDrainSpeed = 10f;
+    [SerializeField] float prayerHealthDrainSpeed = 0f;
 
     //STATES
-    public bool isAlive = true;
-    public bool isDrainingFromPrayer = false;
+    [SerializeField] bool isAlive = true;
+    [SerializeField] bool isDrainingFromPrayer = false;
 
     //CACHES
     RectTransform healthRectTransform;
     LevelMaster levelMaster;
+    LevelConfig levelConfig;
+
 
     private void Awake()
     {
         healthRectTransform = transform.Find("Health").GetComponent<RectTransform>();
         levelMaster = LevelMaster.GetThisSingletonScript();
+        levelConfig = levelMaster.GetLevelConfig();
     }
 
     void Start()
     {
         maxHealth = levelMaster.maxHealth;
         currentHealth = levelMaster.currentHealth;
+        healthDrainSpeed = levelConfig.healthDrainSpeed;
         UpdateHealthBar();
     }
 

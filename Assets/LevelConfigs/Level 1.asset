@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1305ab74e8f21048a6c0c2dd4255fa8, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  healthDrainSpeed: 10
+  healthDrainSpeed: 20
   alertRiseUpSpeed: 50
   alertRiseDownSpeed: 100
   humanCount: 10

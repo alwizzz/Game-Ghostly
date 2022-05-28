@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Backgrounds
+    uniqueID: 3074847843
+    locked: 0
+  - name: Foregrounds
+    uniqueID: 2801601473
+    locked: 0
   - name: Click Layer
     uniqueID: 3593258633
     locked: 0
