@@ -45,12 +45,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaying: 0
+  isIntense: 0
+  currentLevel: 1
+  timer: 0
+  currentHealth: 0
+  currentScore: 0
+  currentPanickedHumanCount: 0
+  timerMax: 30
+  maxHealth: 30
+  intenseMinimumCount: 10
+  currentLevelConfig: {fileID: 0}
   levelConfigs:
   - {fileID: 11400000, guid: 4e0d3d6d95cb7dc46908606dcb9d6352, type: 2}
   - {fileID: 11400000, guid: 333c0615e679b7943b36568c84449a21, type: 2}
   - {fileID: 11400000, guid: 39478bf796f55e2408f1cb6c23592e93, type: 2}
-  currentLevel: 1
-  timerMax: 30
-  timer: 0
-  currentHealth: 0
-  maxHealth: 100
+  humanGrantedHealth: 5
+  priestGrantedHealth: 7
+  innocentGrantedHealth: -5
+  playerMoveSpeed: 5
+  devourYOffset: 0.16
+  humanWalkSpeed: 0.8
+  humanRunSpeed: 2.5
+  humanWalkDurationMin: 4
+  humanWalkDurationMax: 10
+  humanIdleDurationMin: 2
+  humanIdleDurationMax: 5
+  humanPanicDuration: 1.2
+  humanChangeFacingDirectionProbability: 40
+  humanChaoticRunningDurationMin: 0.7
+  humanChaoticRunningDurationMax: 1.5
+  priestPrayDurationMin: 3
+  priestPrayDurationMax: 5
+  priestPrayerDrainSpeed: 2
+  priestPrayingProbability: 70

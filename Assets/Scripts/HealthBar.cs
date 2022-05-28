@@ -21,7 +21,7 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         healthRectTransform = transform.Find("Health").GetComponent<RectTransform>();
-        levelMaster = FindObjectOfType<LevelMaster>();
+        levelMaster = LevelMaster.GetThisSingletonScript();
     }
 
     void Start()
@@ -58,6 +58,7 @@ public class HealthBar : MonoBehaviour
         {
             currentHealth = 0;
             isAlive = false;
+            levelMaster.GameOver();
         } 
     }
 

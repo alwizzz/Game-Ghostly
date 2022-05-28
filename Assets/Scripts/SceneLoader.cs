@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public LevelMaster levelMaster;
+    LevelMaster levelMaster;
+    MusicManager musicManager;
 
     private void Awake()
     {
@@ -15,14 +16,16 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
-        levelMaster = FindObjectOfType<LevelMaster>();
+        levelMaster = LevelMaster.GetThisSingletonScript();
+        musicManager = FindObjectOfType<MusicManager>();
     }
 
     void Singleton()
     {
-        var thisScriptCount = FindObjectsOfType<LevelMaster>().Length;
+        var thisScriptCount = FindObjectsOfType(GetType()).Length;
         if (thisScriptCount > 1)
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
         }
         else
@@ -31,21 +34,68 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
+    public static SceneLoader GetThisSingletonScript()
+    {
+        var list = FindObjectsOfType<SceneLoader>() ;
+        return list[list.Length - 1];
+    }
 
-    public void LoadTransitionScene() { SceneManager.LoadScene("Transition"); }
-    public void LoadGameOverScene() { SceneManager.LoadScene("GameOver"); }
+    // change SceneLoader with the class name as they both cant use GetType() method
+
+    public void LoadTransitionScene() 
+    {
+        musicManager.PlayPlayingTrack();        
+        SceneManager.LoadScene("Transition"); 
+    }
+    public void LoadGameOverScene() 
+    { 
+        musicManager.PlayGameOverTrack();
+        SceneManager.LoadScene("GameOver");
+    }
+    public void LoadMainMenuScene() 
+    {
+        levelMaster.RestartGame();
+        musicManager.PlayMainMenuTrack();
+        SceneManager.LoadScene("MainMenu"); 
+    }
+    public void LoadTheGameScene() { 
+        levelMaster.StartGame();
+        levelMaster.ResetIntensity();
+        musicManager.PlayPlayingTrack();
+        SceneManager.LoadScene("TheGame"); 
+    }
+
+
 
 
     public void LoadNextLevel()
     {
         levelMaster.LevelUp();
-        levelMaster.StartGame();
-        SceneManager.LoadScene("TheGame");
+        LoadTheGameScene();
     }
+
 
     public bool IsInTransitionScene()
     {
         var thisSceneName = SceneManager.GetActiveScene().name;
         return (thisSceneName == "Transition") ? true : false;
+    }
+
+    public bool IsInTheGameScene()
+    {
+        var thisSceneName = SceneManager.GetActiveScene().name;
+        return (thisSceneName == "TheGame") ? true : false;
+    }
+
+    public bool IsInGameOverScene()
+    {
+        var thisSceneName = SceneManager.GetActiveScene().name;
+        return (thisSceneName == "GameOver") ? true : false;
+    }
+
+    public bool IsInMainMenuScene()
+    {
+        var thisSceneName = SceneManager.GetActiveScene().name;
+        return (thisSceneName == "MainMenu") ? true : false;
     }
 }

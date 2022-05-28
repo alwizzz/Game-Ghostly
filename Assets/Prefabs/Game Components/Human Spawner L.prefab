@@ -56,5 +56,7 @@ MonoBehaviour:
   spawnInGroupProbability: 40
   isFacingRight: 1
   humanPrefab: {fileID: 7096671301497051696, guid: 987684cc13d0cb241bce8b3902ca7c96, type: 3}
-  priestPrefab: {fileID: 8717456171779388926, guid: e1217a152f9559c4892c379972020649, type: 3}
+  priestPrefab: {fileID: 0}
+  innocentPrefab: {fileID: 100774228922229580, guid: dc95eba6ff1f7dd4fa6d32b62a0448e8, type: 3}
   levelConfig: {fileID: 0}
+  levelMaster: {fileID: 0}

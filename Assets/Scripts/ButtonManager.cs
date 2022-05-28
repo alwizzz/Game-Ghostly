@@ -8,10 +8,13 @@ public class ButtonManager : MonoBehaviour
 
     private void Start()
     {
-        var sceneLoaders = FindObjectsOfType<SceneLoader>();
-        sceneLoader = sceneLoaders[1]; // quick solution to get singleton object on DontDestroyOnLoad Scene
+        sceneLoader = SceneLoader.GetThisSingletonScript();
     }
 
     public void LoadNextLevel() { sceneLoader.LoadNextLevel(); }
+
+    public void LoadMainMenuScene() { sceneLoader.LoadMainMenuScene(); }
+    public void LoadTheGameScene() { sceneLoader.LoadTheGameScene(); }
+
 
 }

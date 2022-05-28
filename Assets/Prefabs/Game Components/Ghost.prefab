@@ -148,12 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  defaultYValue: 0
+  devourYOffset: 0.15
   isMoving: 0
   isInterruptable: 1
   isHiding: 1
   isChasing: 0
   isInPrayerAoE: 0
   isDevouring: 0
+  devourSFX: {fileID: 8300000, guid: a9dd84ef380923441a40ac0ea35fef66, type: 3}
+  prayerAOECount: 0
 --- !u!1 &2120756106520972024
 GameObject:
   m_ObjectHideFlags: 0

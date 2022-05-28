@@ -16,10 +16,12 @@ MonoBehaviour:
   alertRiseUpSpeed: 10
   alertRiseDownSpeed: 10
   humanCount: 20
+  priestCount: 10
+  innocentCount: 10
   firstSpawnDelayMin: 3
   firstSpawnDelayMax: 5
-  spawnIntervalMin: 5
-  spawnIntervalMax: 8
+  spawnIntervalMin: 1
+  spawnIntervalMax: 4
   spawnGroupMin: 2
   spawnGroupMax: 4
   spawnGroupIntervalMin: 0.5

@@ -4,33 +4,74 @@ using UnityEngine;
 
 public class LevelMaster : MonoBehaviour
 {
+    [Header("Game Status")]
     public bool isPlaying = true;
-
-    public LevelConfig[] levelConfigs;
-    LevelConfig currentLevelConfig;
+    public bool isIntense = false;
     public int currentLevel = 2;
-
-    public float timerMax = 30f;
     public float timer;
-
     public float currentHealth;
-    public float maxHealth = 100f;
+    public int currentScore;
+    public int currentPanickedHumanCount;
 
+    [Header("Game Constants")]
+    public float timerMax = 30f;
+    public float maxHealth = 100f;
+    public int intenseMinimumCount = 10;
+
+    [Header("Level Config")]
+    [SerializeField] LevelConfig currentLevelConfig;
+    [SerializeField] LevelConfig[] levelConfigs;
+
+    [Header("Granted Healths")]
+    public float humanGrantedHealth = 5f;
+    public float priestGrantedHealth = 5f;
+    public float innocentGrantedHealth = -5f;
+
+
+
+    [Header("Ghost Constants")]
+    public float playerMoveSpeed = 5f;
+    public float devourYOffset = 0.16f;
+
+    [Header("Human Constants")]
+    public float humanWalkSpeed = 0.5f;
+    public float humanRunSpeed = 1.5f;
+    public float humanWalkDurationMin = 4f;
+    public float humanWalkDurationMax = 11f;
+    public float humanIdleDurationMin = 2f;
+    public float humanIdleDurationMax = 5f;
+    public float humanPanicDuration = 1.5f;
+    public int humanChangeFacingDirectionProbability = 1;
+    public float humanChaoticRunningDurationMin = 2f;
+    public float humanChaoticRunningDurationMax = 4f;
+
+    [Header("Priest Constants")]
+    public float priestPrayDurationMin = 2f;
+    public float priestPrayDurationMax = 5f;
+    public float priestPrayerDrainSpeed = 2f;
+    public int priestPrayingProbability = 70;
+
+    // CACHE
     SceneLoader sceneLoader;
+    MusicManager musicManager;
 
     private void Awake()
     {
         Singleton();
 
         currentLevelConfig = levelConfigs[currentLevel - 1];
-        sceneLoader = FindObjectOfType<SceneLoader>();
+        sceneLoader = SceneLoader.GetThisSingletonScript();
+        musicManager = MusicManager.GetThisSingletonScript();
 
-        if(currentHealth == 0f) { currentHealth = maxHealth; } // float will be 0f as default value, not null
+        currentHealth = maxHealth;
+        currentScore = 0;
+        ResetTimer(); 
     }
 
     private void Start()
     {
-        StartGame();
+        if (sceneLoader.IsInTheGameScene()) { StartGame(); } //only automatically start when in TheGame scene
+        ResetIntensity();
     }
 
     private void Update()
@@ -43,11 +84,17 @@ public class LevelMaster : MonoBehaviour
         var thisScriptCount = FindObjectsOfType<LevelMaster>().Length;
         if(thisScriptCount > 1)
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
         } else
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+    public static LevelMaster GetThisSingletonScript()
+    {
+        var list = FindObjectsOfType<LevelMaster>();
+        return list[list.Length - 1];
     }
 
     public LevelConfig GetLevelConfig() => currentLevelConfig;
@@ -67,6 +114,7 @@ public class LevelMaster : MonoBehaviour
     }
 
     public void UpdateCurrentHealth(float newHealth) { currentHealth = newHealth; }
+    public void UpdateCurrentScore(int newScore) { currentScore = newScore; }
 
     public void Lose()
     {
@@ -81,6 +129,12 @@ public class LevelMaster : MonoBehaviour
         ResetTimer();
     }
 
+    public void GameOver()
+    {
+        isPlaying = false;
+        sceneLoader.LoadGameOverScene();
+    }
+
     public void LevelUp()
     {
         currentLevel++;
@@ -89,6 +143,36 @@ public class LevelMaster : MonoBehaviour
         {
             currentLevel = max;
         }
+    }
+
+    public void RestartGame()
+    {
+        currentHealth = maxHealth;
+        currentScore = 0;
+        ResetTimer();
+
+        currentLevel = 1;
+    }
+
+    public void IncrementPanickedHumanCount() 
+    { 
+        currentPanickedHumanCount++; 
+        if(currentPanickedHumanCount >= intenseMinimumCount && !isIntense)
+        {
+            IntenseMode();
+        }
+    }
+
+    void IntenseMode()
+    {
+        isIntense = true;
+        musicManager.PlayPlayingIntenseTrack();
+    }
+
+    public void ResetIntensity()
+    {
+        currentPanickedHumanCount = 0;
+        isIntense = false;
     }
 
 }

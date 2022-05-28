@@ -7,19 +7,24 @@ public class Player : MonoBehaviour
     //TODO: if Human is being chased and they move to offscreen, it still being chased resulting in Player went offscreen
 
     [Header("Configs")]
-    public float moveSpeed = 10f;
-    public int prayerAoECount = 0;
-    public float defaultYvalue;
-    public float devourYOffset = 0.1f;
+    [SerializeField] float moveSpeed = 10f;
+    [SerializeField] float defaultYValue;
+    [SerializeField] float devourYOffset = 0.1f;
 
     [Header("States")]
-    public bool isMoving = false;
-    public bool isInterruptable = true;
-    public bool isHiding = true;
-    public bool isChasing = false;
-    public bool isInPrayerAoE = false;
+    [SerializeField] bool isMoving = false;
+    [SerializeField] bool isInterruptable = true;
+    [SerializeField] bool isHiding = true;
+    [SerializeField] bool isChasing = false;
+    [SerializeField] bool isInPrayerAoE = false;
     [Header("Animator Params")]
-    public bool isDevouring = false; 
+    [SerializeField] bool isDevouring = false;
+
+    [Header("SFX")]
+    [SerializeField] AudioClip devourSFX;
+
+    [Header("Others")]
+    [SerializeField] int prayerAOECount = 0;
 
     //[Header("Caches")]
     int defaultSortingLayer;
@@ -29,21 +34,25 @@ public class Player : MonoBehaviour
     Animator animator;
     Human chasedHuman;
     HealthBar healthBar;
+    ScoreDisplay scoreDisplay;
+    LevelMaster levelMaster;
 
     protected virtual void Awake()
     {
+        levelMaster = LevelMaster.GetThisSingletonScript();
         spriteRenderer = transform.Find("Body").GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         presenceCollider = transform.Find("Presence").GetComponent<BoxCollider2D>();
         healthBar = FindObjectOfType<HealthBar>();
+        scoreDisplay = FindObjectOfType<ScoreDisplay>();
     }
 
     private void Start()
     {
-
+        SetupConstants();
         defaultSortingLayer = spriteRenderer.sortingOrder;
         moveDestination = transform.position.x;
-        defaultYvalue = transform.position.y;
+        defaultYValue = transform.position.y;
 
         UpdateAnimatorParam();
         UpdatePresenceCollider();
@@ -64,8 +73,12 @@ public class Player : MonoBehaviour
         {
             Move();
         }
+    }
 
-        
+    void SetupConstants()
+    {
+        moveSpeed = levelMaster.playerMoveSpeed;
+        devourYOffset = levelMaster.devourYOffset;
     }
 
     void UpdateAnimatorParam()
@@ -105,6 +118,10 @@ public class Player : MonoBehaviour
     // default facing is right
     void FacingRight() { spriteRenderer.flipX = false; }
     void FacingLeft() { spriteRenderer.flipX = true; }
+
+    public bool IsHiding() => isHiding;
+    public bool IsDevouring() => isDevouring;
+
 
     void MoveToPoint(float x)
     {
@@ -150,13 +167,15 @@ public class Player : MonoBehaviour
 
         isChasing = true;
         chasedHuman = target;
+        Debug.Log("chasing " + target);
+        
         MoveToPoint(target.transform.position.x);
     }
 
-    void StopChasing()
+    public void StopChasing()
     {
         isChasing = false;
-        chasedHuman.isBeingChased = false;
+        if (chasedHuman != null) { chasedHuman.SetIsBeingChased(false); }
         chasedHuman = null;
     }
 
@@ -168,6 +187,7 @@ public class Player : MonoBehaviour
         UpdateAnimatorParam();
         chasedHuman.BeingDevoured();
         MoveToDevouredHumanYValue(chasedHuman);
+        AudioSource.PlayClipAtPoint(devourSFX, Camera.main.transform.position, 0.01f);
 
         spriteRenderer.sortingOrder = 10; // so it will appear on top of human
     }
@@ -178,14 +198,15 @@ public class Player : MonoBehaviour
         isDevouring = false;
         UpdateAnimatorParam();
 
+        healthBar.AddHealth(chasedHuman.GetGrantedHealth());
         chasedHuman.Die();
-        healthBar.AddHealth(chasedHuman.grantedHealth);
         chasedHuman = null; // delete chache
 
         isChasing = false;
         spriteRenderer.sortingOrder = defaultSortingLayer; // back to default 
 
         isInterruptable = true;
+        scoreDisplay.IncrementScore();
     }
 
     void MoveToDevouredHumanYValue(Human chasedHuman)
@@ -195,7 +216,7 @@ public class Player : MonoBehaviour
     
     void BackToDefaultYValue()
     {
-        transform.position = new Vector2(transform.position.x, defaultYvalue);
+        transform.position = new Vector2(transform.position.x, defaultYValue);
     }
 
     void UpdatePresenceCollider()
@@ -210,7 +231,7 @@ public class Player : MonoBehaviour
 
     public void EnteredPrayerAoE(float drainSpeed)
     {
-        prayerAoECount++;
+        prayerAOECount++;
         if (!isInPrayerAoE) //currently not in aoe
         {
             isInPrayerAoE = true;
@@ -223,8 +244,8 @@ public class Player : MonoBehaviour
 
     public void ExitedPrayerAoE(float drainSpeed)
     {
-        prayerAoECount--;
-        if(prayerAoECount <= 0)
+        prayerAOECount--;
+        if(prayerAOECount <= 0)
         {
             isInPrayerAoE = false;
             healthBar.StopDrainHealthFromPrayer();

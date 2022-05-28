@@ -15,7 +15,7 @@ public class HidingSpot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.isHiding)
+        if (player.IsHiding())
         {
             ghostEye.SetActive(true);
         } else
@@ -25,7 +25,7 @@ public class HidingSpot : MonoBehaviour
 
         if (Input.GetMouseButton(1)) // right click
         {
-            if (!player.isHiding)
+            if (!player.IsHiding())
             {
                 player.Hide();
             }
