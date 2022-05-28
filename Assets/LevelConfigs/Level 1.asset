@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthDrainSpeed: 20
   alertRiseUpSpeed: 50
-  alertRiseDownSpeed: 100
+  alertRiseDownSpeed: 25
   humanCount: 10
   humanSpawnProbability: 40
   priestCount: 10
