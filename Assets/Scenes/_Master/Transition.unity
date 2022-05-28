@@ -440,14 +440,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1572258921}
-    - target: {fileID: 1661049928, guid: efd454f07e586564da9ffa961e79df14, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1572258921}
-    - target: {fileID: 918484388009175303, guid: efd454f07e586564da9ffa961e79df14, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4859465789964948421, guid: efd454f07e586564da9ffa961e79df14, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -536,5 +528,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transition Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6921487667838251085, guid: efd454f07e586564da9ffa961e79df14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1572258921}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efd454f07e586564da9ffa961e79df14, type: 3}

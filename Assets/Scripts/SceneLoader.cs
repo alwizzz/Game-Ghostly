@@ -67,6 +67,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadHowToPlayScene()
     {
+        musicManager.PlayMainMenuTrack();
         SceneManager.LoadScene("HowToPlay");
     }
 
@@ -100,5 +101,11 @@ public class SceneLoader : MonoBehaviour
     {
         var thisSceneName = SceneManager.GetActiveScene().name;
         return (thisSceneName == "MainMenu") ? true : false;
+    }
+
+    public bool IsInHowToPlayScene()
+    {
+        var thisSceneName = SceneManager.GetActiveScene().name;
+        return (thisSceneName == "HowToPlay") ? true : false;
     }
 }

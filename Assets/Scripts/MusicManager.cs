@@ -45,6 +45,7 @@ public class MusicManager : MonoBehaviour
     }
 
     public void PlayMainMenuTrack() {
+        if (thisAudioSource.clip == mainMenuTrack) { return; } //do nothing if already playing the track
         thisAudioSource.clip = mainMenuTrack;
         thisAudioSource.Play();
     }
@@ -71,7 +72,9 @@ public class MusicManager : MonoBehaviour
     void PlayCurrentSceneTrack()
     {
         if (sceneLoader.IsInMainMenuScene()) { PlayMainMenuTrack(); }
+        else if (sceneLoader.IsInHowToPlayScene()) { PlayMainMenuTrack(); }
         else if (sceneLoader.IsInTheGameScene()) { PlayPlayingTrack(); }
+        else if (sceneLoader.IsInTransitionScene()) { PlayPlayingTrack(); }
         else if (sceneLoader.IsInGameOverScene()) { PlayGameOverTrack(); }
     }
 }

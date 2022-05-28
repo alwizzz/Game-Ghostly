@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     //[Header("Caches")]
     int defaultSortingLayer;
     float moveDestination;
-    //float grantedHealthCache;
+    float grantedHealthCache;
     SpriteRenderer spriteRenderer;
     BoxCollider2D presenceCollider;
     Animator animator;
@@ -169,8 +169,8 @@ public class Player : MonoBehaviour
         isChasing = true;
         chasedHuman = target;
         Debug.Log("chasing " + chasedHuman);
-        //grantedHealthCache = chasedHuman.GetGrantedHealth();
-        
+        grantedHealthCache = chasedHuman.GetGrantedHealth();
+
         MoveToPoint(target.transform.position.x);
     }
 
@@ -205,8 +205,8 @@ public class Player : MonoBehaviour
         isDevouring = false;
         UpdateAnimatorParam();
 
-        healthBar.AddHealth(chasedHuman.GetGrantedHealth());
-        chasedHuman.Die();
+        healthBar.AddHealth(grantedHealthCache);
+        if (chasedHuman != null) { chasedHuman.Die(); } // to avoid bug: Human reference missing midway, bug still not fixed
         chasedHuman = null; // delete chache
 
         isChasing = false;

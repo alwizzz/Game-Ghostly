@@ -59,7 +59,7 @@ public class LevelMaster : MonoBehaviour
     {
         Singleton();
 
-        currentLevelConfig = levelConfigs[currentLevel - 1];
+        UpdateLevelConfig();
         sceneLoader = SceneLoader.GetThisSingletonScript();
         musicManager = MusicManager.GetThisSingletonScript();
 
@@ -99,6 +99,18 @@ public class LevelMaster : MonoBehaviour
 
     public LevelConfig GetLevelConfig() => currentLevelConfig;
 
+    void UpdateLevelConfig()
+    {
+        int maxLevelConfig = levelConfigs.Length;
+        if(currentLevel > maxLevelConfig)
+        {
+            currentLevelConfig = levelConfigs[maxLevelConfig - 1];
+        } else
+        {
+            currentLevelConfig = levelConfigs[currentLevel - 1];
+        }
+    }
+
     void ResetTimer() { timer = timerMax; }
     void CountdownTimer() { 
         timer -= Time.deltaTime; 
@@ -125,7 +137,7 @@ public class LevelMaster : MonoBehaviour
     public void StartGame()
     {
         isPlaying = true;
-        currentLevelConfig = levelConfigs[currentLevel - 1];
+        UpdateLevelConfig();
         ResetTimer();
     }
 
@@ -138,11 +150,6 @@ public class LevelMaster : MonoBehaviour
     public void LevelUp()
     {
         currentLevel++;
-        var max = levelConfigs.Length;
-        if(currentLevel > max)
-        {
-            currentLevel = max;
-        }
     }
 
     public void RestartGame()

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class LevelDisplay : MonoBehaviour
 {
+    [SerializeField] bool isFadingOut = true;
     [SerializeField] float lingerDuration = 2f;
     [SerializeField] float fadeOutDuration = 2f;
     float fadeOutInterval = 0.1f;
-    float fadeOutSpeed;
 
     Text thisText;
     Color currentColor;
@@ -20,11 +20,12 @@ public class LevelDisplay : MonoBehaviour
         levelMaster = FindObjectOfType<LevelMaster>();
         thisText = GetComponent<Text>();
         currentColor = thisText.color;       
-        fadeOutSpeed = fadeOutDuration / fadeOutInterval;
-
-
         thisText.text = "Level " + levelMaster.currentLevel.ToString();
-        StartCoroutine(LingerThenFadeOut());
+
+        if (isFadingOut)
+        {
+            StartCoroutine(LingerThenFadeOut());
+        }
     }
 
     IEnumerator LingerThenFadeOut()
