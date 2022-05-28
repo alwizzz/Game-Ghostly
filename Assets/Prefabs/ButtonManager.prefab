@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda61d76ec4e8b74db63b7ecfbd99bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoader: {fileID: 0}
+  clickSFX: {fileID: 8300000, guid: dabf4fc98ed38f0439671dd2d5d93525, type: 3}

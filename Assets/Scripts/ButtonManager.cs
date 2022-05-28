@@ -4,17 +4,45 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-    public SceneLoader sceneLoader;
+    [SerializeField] AudioClip clickSFX;
+
+    MusicManager musicManager;
+    SceneLoader sceneLoader;
 
     private void Start()
     {
         sceneLoader = SceneLoader.GetThisSingletonScript();
+        musicManager = MusicManager.GetThisSingletonScript();
+
+    }
+    
+    void PlayClickSFX()
+    {
+        AudioSource.PlayClipAtPoint(clickSFX, Camera.main.transform.position, 0.1f);
     }
 
-    public void LoadNextLevel() { sceneLoader.LoadNextLevel(); }
+    public void LoadNextLevel() 
+    {
+        PlayClickSFX();
+        sceneLoader.LoadNextLevel(); 
+    }
 
-    public void LoadMainMenuScene() { sceneLoader.LoadMainMenuScene(); }
-    public void LoadTheGameScene() { sceneLoader.LoadTheGameScene(); }
+    public void LoadMainMenuScene() 
+    { 
+        PlayClickSFX();
+        sceneLoader.LoadMainMenuScene();
+    }
+    public void LoadTheGameScene() 
+    { 
+        PlayClickSFX();
+        sceneLoader.LoadTheGameScene(); 
+    }
+
+    public void QuitGame()
+    {
+        PlayClickSFX();
+        Application.Quit();
+    }
 
 
 }
