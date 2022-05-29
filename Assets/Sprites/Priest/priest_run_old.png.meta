@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 688bd7b50bd5aaf47a83f79fe16fb0f7
+guid: 4ca78c4e7d030dc4c921c2126525dd21
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: priest_run_0
+      name: priest_run_old_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ea697cfa2d11eb4fbcd8c55f7a61024
-      internalID: -1516551419
+      spriteID: 4805e8e8477803a4c8b5f358c972422e
+      internalID: 1559022400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: priest_run_1
+      name: priest_run_old_1
       rect:
         serializedVersion: 2
         x: 60
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f52a67b81281b2847b7e7d5d3e8bda16
-      internalID: -1431120070
+      spriteID: 796f43931084a6a4e9d7ffb7e1130444
+      internalID: -1767817582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: priest_run_2
+      name: priest_run_old_2
       rect:
         serializedVersion: 2
         x: 120
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 949abebc808e7014c84af295b945a59e
-      internalID: 767648778
+      spriteID: c242c31db86e5534199e47b787c389b0
+      internalID: 969699306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: priest_run_3
+      name: priest_run_old_3
       rect:
         serializedVersion: 2
         x: 180
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52a7854cca283904aae4d02b4e0da799
-      internalID: 2044478211
+      spriteID: 8a84eb4261116e34385aa00128bca211
+      internalID: 1503606467
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      priest_run_3: 2044478211
-      priest_run_0: -1516551419
-      priest_run_2: 767648778
-      priest_run_1: -1431120070
+      priest_run_old_3: 1503606467
+      priest_run_old_2: 969699306
+      priest_run_old_1: -1767817582
+      priest_run_old_0: 1559022400
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

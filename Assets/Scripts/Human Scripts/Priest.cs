@@ -61,7 +61,7 @@ public class Priest : Human
 
     void UpdatePriestPrayer()
     {
-        if (isPraying) { priestPrayer.ActivatePrayerAoE(); }
+        if (isPraying || isRunning) { priestPrayer.ActivatePrayerAoE(); }
         else { priestPrayer.DeactivatePrayerAoE(); }
     }
 
