@@ -501,6 +501,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 977985503}
+    - target: {fileID: 945429911528966662, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 945429911528966662, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 945429911528966663, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 945429911528966663, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 945429911528966663, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4438213468360236257, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
       propertyPath: m_Name
       value: Game Over Canvas

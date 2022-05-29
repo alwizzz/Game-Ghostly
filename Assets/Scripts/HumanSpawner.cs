@@ -25,9 +25,9 @@ public class HumanSpawner : MonoBehaviour
 
     //STATES
     [SerializeField] bool isFacingRight = false;
-    bool humanAvailable;
-    bool priestAvailable;
-    bool innocentAvailable;
+    [SerializeField] bool humanAvailable;
+    [SerializeField] bool priestAvailable;
+    [SerializeField] bool innocentAvailable;
 
     //CACHE 
     [SerializeField] Human humanPrefab;
@@ -90,6 +90,7 @@ public class HumanSpawner : MonoBehaviour
             float interval = Random.Range(spawnIntervalMin, spawnIntervalMax);
             yield return new WaitForSeconds(interval);
         }
+        Debug.Log("habis" + gameObject.name);
     }
 
     IEnumerator SpawnGroup(int count)
@@ -97,9 +98,12 @@ public class HumanSpawner : MonoBehaviour
         //Debug.Log("spawned in group from" + gameObject.name);
         for(int i=0; i<count; i++)
         {
-            Spawn();
-            float interval = Random.Range(spawnGroupIntervalMin, spawnGroupIntervalMax);
-            yield return new WaitForSeconds(interval);
+            if (humanAvailable || priestAvailable || innocentAvailable)
+            {
+                Spawn();
+                float interval = Random.Range(spawnGroupIntervalMin, spawnGroupIntervalMax);
+                yield return new WaitForSeconds(interval);
+            }
         }
     }
 
@@ -115,6 +119,11 @@ public class HumanSpawner : MonoBehaviour
         Vector3 spawnPosition = new Vector3(transform.position.x, lanes[laneIndex], 0);
 
         var prefabToBeSpawned = GetRandomPrefab();
+
+        if (prefabToBeSpawned == null)
+        {
+            return;
+        }
 
         var spawned = Instantiate(
             prefabToBeSpawned.gameObject,
@@ -200,11 +209,14 @@ public class HumanSpawner : MonoBehaviour
         {
             return priestPrefab;
         }
-        else // (!humanAvailable && !priestAvailable && innocentAvailable) //condition 7: only innocent type available
+        else if (!humanAvailable && !priestAvailable && innocentAvailable) //condition 7: only innocent type available
         {
             return innocentPrefab;
         }
-
+        else
+        {
+            return null;
+        }
     }
 
 }
