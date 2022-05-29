@@ -17,16 +17,16 @@ MonoBehaviour:
   alertRiseDownSpeed: 25
   humanCount: 10
   humanSpawnProbability: 40
-  priestCount: 8
+  priestCount: 6
   priestSpawnProbability: 40
   innocentCount: 2
   innocentSpawnProbability: 20
-  firstSpawnDelayMin: 0
-  firstSpawnDelayMax: 1
-  spawnIntervalMin: 1
-  spawnIntervalMax: 2
-  spawnGroupMin: 3
-  spawnGroupMax: 5
-  spawnGroupIntervalMin: 0.2
-  spawnGroupIntervalMax: 1
+  firstSpawnDelayMin: 1
+  firstSpawnDelayMax: 3
+  spawnIntervalMin: 2
+  spawnIntervalMax: 3
+  spawnGroupMin: 2
+  spawnGroupMax: 4
+  spawnGroupIntervalMin: 0.5
+  spawnGroupIntervalMax: 2
   spawnInGroupProbability: 70

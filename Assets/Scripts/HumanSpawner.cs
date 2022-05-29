@@ -71,6 +71,9 @@ public class HumanSpawner : MonoBehaviour
         spawnGroupIntervalMin = levelConfig.spawnGroupIntervalMin;
         spawnGroupIntervalMax = levelConfig.spawnGroupIntervalMax;
         spawnInGroupProbability = levelConfig.spawnInGroupProbability;
+
+        spawnIntervalMin = levelConfig.spawnIntervalMin;
+        spawnIntervalMax = levelConfig.spawnIntervalMax;
     }
 
     IEnumerator Spawning()

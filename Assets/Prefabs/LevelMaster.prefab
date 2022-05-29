@@ -58,14 +58,14 @@ MonoBehaviour:
   levelConfigs:
   - {fileID: 11400000, guid: 4e0d3d6d95cb7dc46908606dcb9d6352, type: 2}
   - {fileID: 11400000, guid: 0159bfbf3940f4f4083fb1603cea0e52, type: 2}
-  - {fileID: 11400000, guid: cb2fa8a178c60634b83a0ca554ee6d89, type: 2}
-  - {fileID: 11400000, guid: 06f589a9d4e0aba498203b0e7d65fb31, type: 2}
+  - {fileID: 11400000, guid: 7f873ebf763752546ac8980a0dedce2a, type: 2}
+  - {fileID: 11400000, guid: 442e0a10c62c4a84d808fff0f6a024f8, type: 2}
   humanGrantedHealth: 5
   priestGrantedHealth: 7
   innocentGrantedHealth: -5
   playerMoveSpeed: 5
   devourYOffset: 0.16
-  humanWalkSpeed: 1.2
+  humanWalkSpeed: 1
   humanRunSpeed: 2.5
   humanWalkDurationMin: 4
   humanWalkDurationMax: 10
