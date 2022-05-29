@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1305ab74e8f21048a6c0c2dd4255fa8, type: 3}
-  m_Name: Level 4
+  m_Name: Level 6
   m_EditorClassIdentifier: 
-  healthDrainSpeed: 1.5
-  alertRiseUpSpeed: 125
-  alertRiseDownSpeed: 50
+  healthDrainSpeed: 2
+  alertRiseUpSpeed: 150
+  alertRiseDownSpeed: 25
   priestPrayerDrainSpeed: 2
-  humanCount: 8
-  priestCount: 5
+  humanCount: 9
+  priestCount: 6
   innocentCount: 3
   firstSpawnDelayMin: 0
   firstSpawnDelayMax: 0
-  spawnIntervalMin: 2
-  spawnIntervalMax: 3
-  spawnGroupMin: 2
+  spawnIntervalMin: 3
+  spawnIntervalMax: 4
+  spawnGroupMin: 3
   spawnGroupMax: 3
   spawnGroupIntervalMin: 1
   spawnGroupIntervalMax: 2

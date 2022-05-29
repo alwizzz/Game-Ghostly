@@ -123,6 +123,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &457389194
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800243, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494637775931800246, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
+      propertyPath: m_Name
+      value: MusicManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 667efbf56c4abc9439bf6b9e537482c9, type: 3}
 --- !u!1001 &1058703413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -436,6 +493,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9458744, guid: efd454f07e586564da9ffa961e79df14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -89.99999
+      objectReference: {fileID: 0}
     - target: {fileID: 9458745, guid: efd454f07e586564da9ffa961e79df14, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -548,6 +609,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transition Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6921487667838251084, guid: efd454f07e586564da9ffa961e79df14, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5178799
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921487667838251084, guid: efd454f07e586564da9ffa961e79df14, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5178799
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921487667838251084, guid: efd454f07e586564da9ffa961e79df14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -273
+      objectReference: {fileID: 0}
     - target: {fileID: 6921487667838251085, guid: efd454f07e586564da9ffa961e79df14, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -571,6 +644,14 @@ PrefabInstance:
     - target: {fileID: 6921487668232650725, guid: efd454f07e586564da9ffa961e79df14, type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736052253663565724, guid: efd454f07e586564da9ffa961e79df14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 152
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832055466957589884, guid: efd454f07e586564da9ffa961e79df14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 73.99998
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efd454f07e586564da9ffa961e79df14, type: 3}

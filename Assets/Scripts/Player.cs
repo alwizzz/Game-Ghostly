@@ -206,7 +206,10 @@ public class Player : MonoBehaviour
         UpdateAnimatorParam();
 
         healthBar.AddHealth(grantedHealthCache);
+
         if (chasedHuman != null) { chasedHuman.Die(); } // to avoid bug: Human reference missing midway, bug still not fixed
+        else { Debug.Log("THAT bug occured"); }
+        
         chasedHuman = null; // delete chache
 
         isChasing = false;

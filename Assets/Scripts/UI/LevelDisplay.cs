@@ -9,7 +9,6 @@ public class LevelDisplay : MonoBehaviour
     [SerializeField] bool isFadingOut = true;
     [SerializeField] float lingerDuration = 2f;
     [SerializeField] float fadeOutDuration = 2f;
-    float fadeOutInterval = 0.1f;
 
     Text thisText;
     Color currentColor;

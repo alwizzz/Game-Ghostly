@@ -55,12 +55,11 @@ public class HumanSpawner : MonoBehaviour
     void Setup()
     {
         humanCount = levelConfig.humanCount;
-        humanSpawnProbability = levelConfig.humanSpawnProbability;
+        humanSpawnProbability = levelMaster.humanSpawnProbability;
         priestCount = levelConfig.priestCount;
-        priestSpawnProbability = levelConfig.priestSpawnProbability;
+        priestSpawnProbability = levelMaster.priestSpawnProbability;
         innocentCount = levelConfig.innocentCount;
-        innocentSpawnProbability = levelConfig.innocentSpawnProbability;
-
+        innocentSpawnProbability = levelMaster.innocentSpawnProbability;
 
         firstSpawnDelayMin = levelConfig.firstSpawnDelayMin;
         firstSpawnDelayMax = levelConfig.firstSpawnDelayMax;
@@ -93,7 +92,7 @@ public class HumanSpawner : MonoBehaviour
             float interval = Random.Range(spawnIntervalMin, spawnIntervalMax);
             yield return new WaitForSeconds(interval);
         }
-        Debug.Log("habis" + gameObject.name);
+        Debug.Log("habis " + gameObject.name + levelMaster.currentLevel);
     }
 
     IEnumerator SpawnGroup(int count)

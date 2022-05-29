@@ -46,23 +46,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlaying: 0
   isIntense: 0
-  currentLevel: 4
+  currentLevel: 10
   timer: 0
   currentHealth: 0
   currentScore: 0
   currentPanickedHumanCount: 0
   timerMax: 30
   maxHealth: 50
-  intenseMinimumCount: 5
+  intenseMinimumCount: 8
+  bonusHealthPerLevelUp: 10
   currentLevelConfig: {fileID: 0}
   levelConfigs:
   - {fileID: 11400000, guid: 4e0d3d6d95cb7dc46908606dcb9d6352, type: 2}
   - {fileID: 11400000, guid: 0159bfbf3940f4f4083fb1603cea0e52, type: 2}
   - {fileID: 11400000, guid: 7f873ebf763752546ac8980a0dedce2a, type: 2}
   - {fileID: 11400000, guid: 442e0a10c62c4a84d808fff0f6a024f8, type: 2}
+  - {fileID: 11400000, guid: cdf87773fdf637e489eff5b9011ba241, type: 2}
+  - {fileID: 11400000, guid: c3b23c74b68bb7742849333a6a15fc51, type: 2}
+  - {fileID: 11400000, guid: 75e9a1a2a62fce6409b39a94becf0e33, type: 2}
+  - {fileID: 11400000, guid: e1b75f35918f7884aab65bba56c7a692, type: 2}
+  - {fileID: 11400000, guid: 7d613ac75937dc44a9135ee07dffebd2, type: 2}
+  - {fileID: 11400000, guid: 15a10099827d34645b4cf4b37dd46a58, type: 2}
   humanGrantedHealth: 5
-  priestGrantedHealth: 7
+  priestGrantedHealth: 7.5
   innocentGrantedHealth: -5
+  humanSpawnProbability: 40
+  priestSpawnProbability: 40
+  innocentSpawnProbability: 20
   playerMoveSpeed: 5
   devourYOffset: 0.16
   humanWalkSpeed: 1
@@ -74,8 +84,7 @@ MonoBehaviour:
   humanPanicDuration: 1.2
   humanChangeFacingDirectionProbability: 40
   humanChaoticRunningDurationMin: 0.7
-  humanChaoticRunningDurationMax: 1.5
+  humanChaoticRunningDurationMax: 2
   priestPrayDurationMin: 3
   priestPrayDurationMax: 5
-  priestPrayerDrainSpeed: 2
   priestPrayingProbability: 70

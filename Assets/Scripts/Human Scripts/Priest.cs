@@ -35,11 +35,12 @@ public class Priest : Human
     {
         prayDurationMin = levelMaster.priestPrayDurationMin;
         prayDurationMax = levelMaster.priestPrayDurationMax;
-        prayerDrainSpeed = levelMaster.priestPrayerDrainSpeed;
         prayingProbability = levelMaster.priestPrayingProbability;
 
         grantedHealth = levelMaster.priestGrantedHealth;
-    }
+        prayerDrainSpeed = levelConfig.priestPrayerDrainSpeed;
+        
+    }   
     
     protected override void SetActiveMovementState(string varName)
     {

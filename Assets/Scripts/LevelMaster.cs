@@ -17,6 +17,7 @@ public class LevelMaster : MonoBehaviour
     public float timerMax = 30f;
     public float maxHealth = 100f;
     public int intenseMinimumCount = 10;
+    public float bonusHealthPerLevelUp = 10f;
 
     [Header("Level Config")]
     [SerializeField] LevelConfig currentLevelConfig;
@@ -27,7 +28,10 @@ public class LevelMaster : MonoBehaviour
     public float priestGrantedHealth = 5f;
     public float innocentGrantedHealth = -5f;
 
-
+    [Header("Spawn Probabilities")]
+    public float humanSpawnProbability = 40f;
+    public float priestSpawnProbability = 40f;
+    public float innocentSpawnProbability = 20f;
 
     [Header("Ghost Constants")]
     public float playerMoveSpeed = 5f;
@@ -48,7 +52,6 @@ public class LevelMaster : MonoBehaviour
     [Header("Priest Constants")]
     public float priestPrayDurationMin = 2f;
     public float priestPrayDurationMax = 5f;
-    public float priestPrayerDrainSpeed = 2f;
     public int priestPrayingProbability = 70;
 
     // CACHE
@@ -150,6 +153,13 @@ public class LevelMaster : MonoBehaviour
     public void LevelUp()
     {
         currentLevel++;
+        AddBonusHealth();
+    }
+
+    void AddBonusHealth()
+    {
+        currentHealth += bonusHealthPerLevelUp;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
     public void RestartGame()
@@ -169,6 +179,15 @@ public class LevelMaster : MonoBehaviour
             IntenseMode();
         }
     }
+    public void DecrementPanickedHumanCount()
+    {
+        currentPanickedHumanCount--;
+        if (currentPanickedHumanCount >= intenseMinimumCount && !isIntense)
+        {
+            IntenseMode();
+        }
+    }
+
 
     void IntenseMode()
     {

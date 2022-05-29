@@ -22,6 +22,7 @@ public class Human : MonoBehaviour
     [SerializeField] protected float grantedHealth = 5f;
 
     [Header("States")]
+    [SerializeField] protected bool isDespawnable = false;
     [SerializeField] protected bool isBeingChased = false;
     [SerializeField] protected bool isBeingDevoured = false;
     [SerializeField] protected bool isPanic = false;
@@ -39,6 +40,7 @@ public class Human : MonoBehaviour
     protected SpriteRenderer exclamationMarkRenderer;
     protected HumanVision thisHumanVision;
     protected LevelMaster levelMaster;
+    protected LevelConfig levelConfig;
 
     //[Header("Configs")]
     //[Header("States")]
@@ -49,6 +51,7 @@ public class Human : MonoBehaviour
     protected virtual void Awake()
     {
         SetupHumanCache();
+        isDespawnable = false;
     }
 
     protected virtual void Start()
@@ -87,6 +90,7 @@ public class Human : MonoBehaviour
     protected void SetupHumanCache()
     {
         levelMaster = LevelMaster.GetThisSingletonScript();
+        levelConfig = levelMaster.GetLevelConfig();
         player = FindObjectOfType<Player>();
         animator = GetComponent<Animator>();
         spriteRenderer = transform.Find("Body").GetComponent<SpriteRenderer>();
@@ -179,6 +183,7 @@ public class Human : MonoBehaviour
     public bool IsFacingRight() => isFacingRight;
     public bool IsBeingChased() => isBeingChased;
     public bool IsBeingDevoured() => isBeingDevoured;
+    public bool IsDespawnable() => isDespawnable;
 
 
     public float GetGrantedHealth() => grantedHealth;
@@ -251,7 +256,7 @@ public class Human : MonoBehaviour
         player.Chase(this);
     }
 
-    public void Die() // called by Player
+    public void Die() // called by Player and Despawner
     {
         gameObject.SetActive(false);
         Destroy(gameObject, 2f);
@@ -261,13 +266,20 @@ public class Human : MonoBehaviour
     {
         isBeingChased = false;
         isBeingDevoured = true;
+        thisHumanVision.gameObject.SetActive(false);
+        StopAllCoroutines();
         animator.SetTrigger("forcedIdle"); // forced play idle animation
+    }
+
+    public void EnteredPlayZone()
+    {
+        isDespawnable = true;
     }
 
     public void GoingToDespawn()
     {
         //Debug.Log("player being told to stop chasing");
-        player.StopChasing();
+        if (isBeingChased) { player.StopChasing(); }
     }
 
     public bool IsInNormalState()
@@ -280,5 +292,12 @@ public class Human : MonoBehaviour
         Alerted();
     }
 
-    
+    private void OnDestroy()
+    {
+        if(isPanic || isRunning)
+        {
+            levelMaster.DecrementPanickedHumanCount();
+        }
+    }
+
 }

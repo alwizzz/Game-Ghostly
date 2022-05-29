@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuTrack: {fileID: 8300000, guid: d4d45edfca0d8024eb0f1f1f2d5fcb7f, type: 3}
   playingTrack: {fileID: 8300000, guid: 82d11d02094aaf142902c5349bfed050, type: 3}
-  playingIntenseTrack: {fileID: 8300000, guid: f423740c89f0be8469aa3e8217a2c758, type: 3}
+  playingIntenseTrack: {fileID: 8300000, guid: ecb4a60bd09f1ac4aa965f6177f91c83, type: 3}
   gameOverTrack: {fileID: 8300000, guid: 4903b28fbd3c6194690150c1aa44ee39, type: 3}
 --- !u!82 &8494637775931800241
 AudioSource:
@@ -63,7 +63,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.03
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
