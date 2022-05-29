@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
 
         isChasing = true;
         chasedHuman = target;
-        Debug.Log("chasing " + chasedHuman);
+        // Debug.Log("chasing " + chasedHuman);
         grantedHealthCache = chasedHuman.GetGrantedHealth();
 
         MoveToPoint(target.transform.position.x);
@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
 
     void Devour()
     {
-        Debug.Log("devouring " + chasedHuman);
+        // Debug.Log("devouring " + chasedHuman);
         isInterruptable = false; // this action is uninterruptable
 
         isDevouring = true;
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour
 
     public void DevourFinished() // called by Ghost Devour animation event
     {
-        Debug.Log("finished devouring " + chasedHuman);
+        // Debug.Log("finished devouring " + chasedHuman);
 
         BackToDefaultYValue();
         isDevouring = false;

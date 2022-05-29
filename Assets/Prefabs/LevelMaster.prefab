@@ -46,25 +46,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlaying: 0
   isIntense: 0
-  currentLevel: 1
+  currentLevel: 4
   timer: 0
   currentHealth: 0
   currentScore: 0
   currentPanickedHumanCount: 0
   timerMax: 30
-  maxHealth: 30
-  intenseMinimumCount: 10
+  maxHealth: 50
+  intenseMinimumCount: 5
   currentLevelConfig: {fileID: 0}
   levelConfigs:
   - {fileID: 11400000, guid: 4e0d3d6d95cb7dc46908606dcb9d6352, type: 2}
   - {fileID: 11400000, guid: 0159bfbf3940f4f4083fb1603cea0e52, type: 2}
-  - {fileID: 11400000, guid: 39478bf796f55e2408f1cb6c23592e93, type: 2}
+  - {fileID: 11400000, guid: cb2fa8a178c60634b83a0ca554ee6d89, type: 2}
+  - {fileID: 11400000, guid: 06f589a9d4e0aba498203b0e7d65fb31, type: 2}
   humanGrantedHealth: 5
   priestGrantedHealth: 7
   innocentGrantedHealth: -5
   playerMoveSpeed: 5
   devourYOffset: 0.16
-  humanWalkSpeed: 0.8
+  humanWalkSpeed: 1.2
   humanRunSpeed: 2.5
   humanWalkDurationMin: 4
   humanWalkDurationMax: 10
