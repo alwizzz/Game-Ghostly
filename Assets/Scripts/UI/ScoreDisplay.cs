@@ -9,21 +9,22 @@ public class ScoreDisplay : MonoBehaviour
     public int currentScore = 0;
 
     Text thisText;
-    LevelMaster levelMaster;
+    public LevelMaster levelMaster;
 
     private void Awake()
     {
         thisText = GetComponent<Text>();
-        levelMaster = LevelMaster.GetThisSingletonScript();
     }
 
     private void Start()
     {
+        levelMaster = LevelMaster.GetThisSingletonScript();
         currentScore = levelMaster.currentScore;
     }
 
     private void Update()
     {
+        // if (levelMaster != null) { levelMaster = LevelMaster.GetThisSingletonScript(); }
         UpdateText();
     }
 

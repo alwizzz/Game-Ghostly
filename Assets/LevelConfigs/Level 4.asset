@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Level 4
   m_EditorClassIdentifier: 
   healthDrainSpeed: 2
-  alertRiseUpSpeed: 50
+  alertRiseUpSpeed: 100
   alertRiseDownSpeed: 25
-  humanCount: 10
+  humanCount: 12
   humanSpawnProbability: 40
   priestCount: 8
   priestSpawnProbability: 40
-  innocentCount: 4
+  innocentCount: 2
   innocentSpawnProbability: 20
-  firstSpawnDelayMin: 0
-  firstSpawnDelayMax: 1
-  spawnIntervalMin: 0.8
-  spawnIntervalMax: 1.6
-  spawnGroupMin: 4
-  spawnGroupMax: 6
-  spawnGroupIntervalMin: 0.2
-  spawnGroupIntervalMax: 0.6
+  firstSpawnDelayMin: 1
+  firstSpawnDelayMax: 3
+  spawnIntervalMin: 2
+  spawnIntervalMax: 3
+  spawnGroupMin: 2
+  spawnGroupMax: 4
+  spawnGroupIntervalMin: 0.5
+  spawnGroupIntervalMax: 2
   spawnInGroupProbability: 70

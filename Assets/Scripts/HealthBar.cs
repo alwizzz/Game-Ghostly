@@ -23,11 +23,11 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         healthRectTransform = transform.Find("Health").GetComponent<RectTransform>();
-        levelMaster = LevelMaster.GetThisSingletonScript();
     }
 
     void Start()
     {
+        levelMaster = LevelMaster.GetThisSingletonScript();
         levelConfig = levelMaster.GetLevelConfig();
         maxHealth = levelMaster.maxHealth;
         currentHealth = levelMaster.currentHealth;
@@ -39,6 +39,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (levelMaster != null) { levelMaster = LevelMaster.GetThisSingletonScript(); }
         if (isAlive) 
         { 
             DrainHealthOverTime();
