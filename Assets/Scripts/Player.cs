@@ -10,11 +10,17 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float defaultYValue;
     [SerializeField] float devourYOffset = 0.1f;
+    [SerializeField] Color defaultColor;
+    [SerializeField] Color damagedColor;
+    [SerializeField] Color insidePrayerColor;
+    Color currentColor;
+
 
     [Header("States")]
     [SerializeField] bool isMoving = false;
     [SerializeField] bool isInterruptable = true;
     [SerializeField] bool isHiding = true;
+    [SerializeField] bool isGoingToHide = false;
     [SerializeField] bool isChasing = false;
     [SerializeField] bool isInPrayerAoE = false;
     [Header("Animator Params")]
@@ -57,6 +63,9 @@ public class Player : MonoBehaviour
 
         UpdateAnimatorParam();
         UpdatePresenceCollider();
+
+        currentColor = defaultColor;
+        UpdateColor();
     }
 
 
@@ -73,7 +82,7 @@ public class Player : MonoBehaviour
         if (isMoving)
         {
             Move();
-        }
+        } 
     }
 
     void SetupConstants()
@@ -113,6 +122,10 @@ public class Player : MonoBehaviour
             {
                 Devour();
             }
+            else if (isGoingToHide)
+            {
+                Hiding();
+            }
         }
     }
 
@@ -135,6 +148,8 @@ public class Player : MonoBehaviour
         if (!isInterruptable) { return; }
 
         if (isChasing) { StopChasing(); }
+        if (isGoingToHide) { isGoingToHide = false; }
+
         MoveToPoint(worldXPos);
     }
 
@@ -143,19 +158,15 @@ public class Player : MonoBehaviour
     public void Hide() //called by HidingSpot
     {
         if (!isInterruptable) { return; }
-
         if (isChasing) { StopChasing(); }
 
         MoveToPoint(0);
-        StartCoroutine(Hiding());
+        isGoingToHide = true;
     }
 
-    IEnumerator Hiding()
+    void Hiding()
     {
-        while (isMoving)
-        {
-            yield return null;
-        }
+        isGoingToHide = false;
         isHiding = true;
         UpdatePresenceCollider();
     }
@@ -165,6 +176,7 @@ public class Player : MonoBehaviour
     public void Chase(Human target) //called by Human
     {
         if (!isInterruptable) { return; }
+        if (isGoingToHide) { isGoingToHide = false; }
 
         isChasing = true;
         chasedHuman = target;
@@ -206,9 +218,11 @@ public class Player : MonoBehaviour
         UpdateAnimatorParam();
 
         healthBar.AddHealth(grantedHealthCache);
+        if(grantedHealthCache < 0) { EatenInnocent(); }
 
         if (chasedHuman != null) { chasedHuman.Die(); } // to avoid bug: Human reference missing midway, bug still not fixed
         else { Debug.Log("THAT bug occured"); }
+
         
         chasedHuman = null; // delete chache
 
@@ -245,6 +259,8 @@ public class Player : MonoBehaviour
         if (!isInPrayerAoE) //currently not in aoe
         {
             isInPrayerAoE = true;
+            currentColor = insidePrayerColor;
+            UpdateColor();
             healthBar.StartDrainHealthFromPrayer(drainSpeed);
         } else //already in aoe
         {
@@ -258,10 +274,32 @@ public class Player : MonoBehaviour
         if(prayerAOECount <= 0)
         {
             isInPrayerAoE = false;
+            currentColor = defaultColor;
+            UpdateColor();
             healthBar.StopDrainHealthFromPrayer();
         } else
         {
             healthBar.ModifyPrayerDrainSpeed(-drainSpeed);
         }
+    }
+
+    void EatenInnocent()
+    {
+        StartCoroutine(DamagedFlare());
+    }
+
+    IEnumerator DamagedFlare()
+    {
+        spriteRenderer.color = damagedColor;
+        for (float t = 0.01f; t < 1f; t += Time.deltaTime)
+        {
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, currentColor, Mathf.Min(1, t / 0.5f));
+            yield return null;
+        }
+    }
+
+    void UpdateColor()
+    {
+        spriteRenderer.color = currentColor;
     }
 }

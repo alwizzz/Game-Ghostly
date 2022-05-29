@@ -565,6 +565,10 @@ PrefabInstance:
       value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 1207269716995059363, guid: a795abf3cfab8114aad080151985dc0a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207269716995059363, guid: a795abf3cfab8114aad080151985dc0a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 733933871}
@@ -797,6 +801,7 @@ MonoBehaviour:
   isMoving: 0
   isInterruptable: 1
   isHiding: 1
+  isGoingToHide: 0
   isChasing: 0
   isInPrayerAoE: 0
   isDevouring: 0

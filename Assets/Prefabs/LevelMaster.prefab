@@ -46,14 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlaying: 0
   isIntense: 0
-  currentLevel: 10
+  currentLevel: 1
   timer: 0
   currentHealth: 0
   currentScore: 0
   currentPanickedHumanCount: 0
   timerMax: 30
   maxHealth: 50
-  intenseMinimumCount: 8
+  intenseMinimumCount: 10
   bonusHealthPerLevelUp: 10
   currentLevelConfig: {fileID: 0}
   levelConfigs:
@@ -67,12 +67,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1b75f35918f7884aab65bba56c7a692, type: 2}
   - {fileID: 11400000, guid: 7d613ac75937dc44a9135ee07dffebd2, type: 2}
   - {fileID: 11400000, guid: 15a10099827d34645b4cf4b37dd46a58, type: 2}
+  - {fileID: 11400000, guid: b97f02c287577ed4eaf4db91f5669381, type: 2}
+  - {fileID: 11400000, guid: bd9730870b9af2545a660044fe1fceb0, type: 2}
+  - {fileID: 11400000, guid: 2ffd02fecf1c978449f7276438645d65, type: 2}
+  - {fileID: 11400000, guid: 512f01156160fde478aa5ca4bc8f4296, type: 2}
+  - {fileID: 11400000, guid: a1f06044e5297e64183ac7cb0d6a5919, type: 2}
   humanGrantedHealth: 5
   priestGrantedHealth: 7.5
   innocentGrantedHealth: -5
   humanSpawnProbability: 40
-  priestSpawnProbability: 40
-  innocentSpawnProbability: 20
+  priestSpawnProbability: 34
+  innocentSpawnProbability: 26
   playerMoveSpeed: 5
   devourYOffset: 0.16
   humanWalkSpeed: 1

@@ -18,6 +18,9 @@ public class Priest : Human
     protected override void Awake()
     {
         SetupHumanCache();
+        isDespawnable = false;
+
+        // Priest cache
         priestPrayer = transform.Find("Prayer AoE").gameObject.GetComponent<PriestPrayer>();
     }
 

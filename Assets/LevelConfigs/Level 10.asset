@@ -16,9 +16,9 @@ MonoBehaviour:
   alertRiseUpSpeed: 200
   alertRiseDownSpeed: 20
   priestPrayerDrainSpeed: 2.75
-  humanCount: 13
-  priestCount: 10
-  innocentCount: 6
+  humanCount: 15
+  priestCount: 11
+  innocentCount: 7
   firstSpawnDelayMin: 0
   firstSpawnDelayMax: 0
   spawnIntervalMin: 1.5

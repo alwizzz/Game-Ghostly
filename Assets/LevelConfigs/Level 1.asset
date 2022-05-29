@@ -15,18 +15,16 @@ MonoBehaviour:
   healthDrainSpeed: 1
   alertRiseUpSpeed: 100
   alertRiseDownSpeed: 50
+  priestPrayerDrainSpeed: 2
   humanCount: 6
-  humanSpawnProbability: 40
   priestCount: 0
-  priestSpawnProbability: 40
   innocentCount: 0
-  innocentSpawnProbability: 20
-  firstSpawnDelayMin: 1
+  firstSpawnDelayMin: 2
   firstSpawnDelayMax: 3
-  spawnIntervalMin: 4
+  spawnIntervalMin: 5
   spawnIntervalMax: 6
   spawnGroupMin: 2
   spawnGroupMax: 2
-  spawnGroupIntervalMin: 2
+  spawnGroupIntervalMin: 3
   spawnGroupIntervalMax: 4
-  spawnInGroupProbability: 70
+  spawnInGroupProbability: 60

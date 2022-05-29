@@ -139,6 +139,7 @@ public class LevelMaster : MonoBehaviour
 
     public void StartGame()
     {
+        //Debug.Log("Start Game called, currentLevel: " + currentLevel.ToString());
         isPlaying = true;
         UpdateLevelConfig();
         ResetTimer();

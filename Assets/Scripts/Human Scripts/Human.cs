@@ -258,8 +258,12 @@ public class Human : MonoBehaviour
 
     public void Die() // called by Player and Despawner
     {
-        gameObject.SetActive(false);
-        Destroy(gameObject, 2f);
+        if (isPanic || isRunning)
+        {
+            levelMaster.DecrementPanickedHumanCount();
+        }
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     public void BeingDevoured()
@@ -267,6 +271,7 @@ public class Human : MonoBehaviour
         isBeingChased = false;
         isBeingDevoured = true;
         thisHumanVision.gameObject.SetActive(false);
+        exclamationMarkRenderer.enabled = false;
         StopAllCoroutines();
         animator.SetTrigger("forcedIdle"); // forced play idle animation
     }
@@ -274,6 +279,7 @@ public class Human : MonoBehaviour
     public void EnteredPlayZone()
     {
         isDespawnable = true;
+        //Debug.Log("entered play zone: " + gameObject.name);
     }
 
     public void GoingToDespawn()
@@ -290,14 +296,6 @@ public class Human : MonoBehaviour
     public void DetectedGhostAround()
     {
         Alerted();
-    }
-
-    private void OnDestroy()
-    {
-        if(isPanic || isRunning)
-        {
-            levelMaster.DecrementPanickedHumanCount();
-        }
     }
 
 }

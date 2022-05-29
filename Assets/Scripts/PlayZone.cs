@@ -13,5 +13,6 @@ public class PlayZone : MonoBehaviour
     {
         var human = humanCollision.gameObject.GetComponent<Human>();
         human.EnteredPlayZone();
+        //Debug.Log(human.gameObject.name);
     }
 }

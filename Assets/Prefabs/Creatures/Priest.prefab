@@ -244,7 +244,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.9346905, y: 0.14070612}
+  m_Offset: {x: -1.3757058, y: 0.14070612}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -255,7 +255,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9447412, y: 1.2814122}
+  m_Size: {x: 2.826772, y: 1.2814122}
   m_EdgeRadius: 0
 --- !u!114 &1911444622434380592
 MonoBehaviour:
@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 8717456171779388914}
   - component: {fileID: 8717456171779388913}
   - component: {fileID: 696716125}
+  - component: {fileID: 8099487852842889784}
   m_Layer: 6
   m_Name: Priest
   m_TagString: Untagged
@@ -580,7 +581,8 @@ MonoBehaviour:
   chaoticRunningDurationMin: 2
   chaoticRunningDurationMax: 5
   grantedHealth: 5
-  isBeingChased: 1
+  isDespawnable: 0
+  isBeingChased: 0
   isBeingDevoured: 0
   isPanic: 0
   isFacingRight: 0
@@ -591,4 +593,25 @@ MonoBehaviour:
   prayDurationMax: 5
   prayerDrainSpeed: 2
   prayingProbability: 90
-  isPraying: 1
+  isPraying: 0
+--- !u!50 &8099487852842889784
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717456171779388917}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

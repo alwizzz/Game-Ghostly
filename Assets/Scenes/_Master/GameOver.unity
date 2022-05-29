@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2247642303208508989, guid: f46638ba12b2f5c49ae781925466990f, type: 3}
+      propertyPath: currentLevel
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2247642303208508990, guid: f46638ba12b2f5c49ae781925466990f, type: 3}
       propertyPath: m_Name
       value: LevelMaster
@@ -497,6 +501,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 117599166009424030, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -114
+      objectReference: {fileID: 0}
+    - target: {fileID: 453523994504356478, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -6.999977
+      objectReference: {fileID: 0}
+    - target: {fileID: 945429911119103406, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -356
+      objectReference: {fileID: 0}
     - target: {fileID: 945429911119103407, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -608,6 +624,10 @@ PrefabInstance:
     - target: {fileID: 4438213468360236269, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952318459118409870, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 190
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d37bb269d7de624439f8d4b2b1d3ecaa, type: 3}

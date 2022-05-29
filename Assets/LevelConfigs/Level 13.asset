@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1305ab74e8f21048a6c0c2dd4255fa8, type: 3}
-  m_Name: Level 3
+  m_Name: Level 13
   m_EditorClassIdentifier: 
-  healthDrainSpeed: 1.2
-  alertRiseUpSpeed: 125
-  alertRiseDownSpeed: 50
-  priestPrayerDrainSpeed: 2
-  humanCount: 7
-  priestCount: 4
-  innocentCount: 2
+  healthDrainSpeed: 2.9
+  alertRiseUpSpeed: 200
+  alertRiseDownSpeed: 10
+  priestPrayerDrainSpeed: 2.9
+  humanCount: 15
+  priestCount: 15
+  innocentCount: 8
   firstSpawnDelayMin: 0
-  firstSpawnDelayMax: 1
-  spawnIntervalMin: 3
-  spawnIntervalMax: 4
-  spawnGroupMin: 2
-  spawnGroupMax: 3
-  spawnGroupIntervalMin: 1
-  spawnGroupIntervalMax: 2
-  spawnInGroupProbability: 50
+  firstSpawnDelayMax: 0
+  spawnIntervalMin: 1.25
+  spawnIntervalMax: 2
+  spawnGroupMin: 3
+  spawnGroupMax: 6
+  spawnGroupIntervalMin: 0.5
+  spawnGroupIntervalMax: 1.25
+  spawnInGroupProbability: 60

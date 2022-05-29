@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    [SerializeField] float transitionDuration;
+
     LevelMaster levelMaster;
     MusicManager musicManager;
+    delegate void MusicToPlay();
+
+    Animator animator;
 
     private void Awake()
     {
         Singleton();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -42,33 +48,46 @@ public class SceneLoader : MonoBehaviour
 
     // change SceneLoader with the class name as they both cant use GetType() method
 
+    IEnumerator TransitionAndLoad(string sceneName, MusicToPlay method)
+    {
+        animator.SetTrigger("FadeIn");
+        yield return new WaitForSeconds(transitionDuration);
+
+        method();
+        SceneManager.LoadScene(sceneName);
+        animator.SetTrigger("FadeOut");
+    }
+
     public void LoadTransitionScene() 
     {
-        musicManager.PlayPlayingTrack();        
-        SceneManager.LoadScene("Transition"); 
+        StartCoroutine(TransitionAndLoad("Transition", musicManager.PlayPlayingTrack));
+        //musicManager.PlayPlayingTrack();
     }
     public void LoadGameOverScene() 
     { 
-        musicManager.PlayGameOverTrack();
-        SceneManager.LoadScene("GameOver");
+        StartCoroutine(TransitionAndLoad("GameOver", musicManager.PlayGameOverTrack));
+        //musicManager.PlayGameOverTrack();
+
     }
     public void LoadMainMenuScene() 
     {
         levelMaster.RestartGame();
-        musicManager.PlayMainMenuTrack();
-        SceneManager.LoadScene("MainMenu"); 
+        StartCoroutine(TransitionAndLoad("MainMenu", musicManager.PlayMainMenuTrack));
+        //musicManager.PlayMainMenuTrack();
+
     }
     public void LoadTheGameScene() { 
         levelMaster.StartGame();
         levelMaster.ResetIntensity();
-        musicManager.PlayPlayingTrack();
-        SceneManager.LoadScene("TheGame"); 
+        StartCoroutine(TransitionAndLoad("TheGame", musicManager.PlayPlayingTrack));
+        //musicManager.PlayPlayingTrack();
+
     }
 
     public void LoadHowToPlayScene()
     {
-        musicManager.PlayMainMenuTrack();
-        SceneManager.LoadScene("HowToPlay");
+        StartCoroutine(TransitionAndLoad("HowToPlay", musicManager.PlayMainMenuTrack));
+        //musicManager.PlayMainMenuTrack();
     }
 
 
