@@ -3,7 +3,7 @@
 
 Game for Game Jam Gamedev.tv 2022
 
-Title: Ghostly
+Title: Ghostly \
 Genre: Survival
 
 Contributors
