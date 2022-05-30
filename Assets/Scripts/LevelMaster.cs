@@ -124,8 +124,8 @@ public class LevelMaster : MonoBehaviour
     void TimeUp()
     {
         isPlaying = false;
-        ResetTimer();
         sceneLoader.LoadTransitionScene();
+        ResetTimer();
     }
 
     public void UpdateCurrentHealth(float newHealth) { currentHealth = newHealth; }

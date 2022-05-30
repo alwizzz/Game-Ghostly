@@ -40,7 +40,7 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         if (levelMaster != null) { levelMaster = LevelMaster.GetThisSingletonScript(); }
-        if (isAlive) 
+        if (isAlive && levelMaster.isPlaying) 
         { 
             DrainHealthOverTime();
             if (isDrainingFromPrayer)
@@ -76,6 +76,8 @@ public class HealthBar : MonoBehaviour
 
     public void AddHealth(float amount)
     {
+        if (!levelMaster.isPlaying) { return; }
+
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         CheckIfDead();
     }
