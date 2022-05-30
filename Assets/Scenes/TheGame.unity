@@ -967,14 +967,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2247642303208508989, guid: f46638ba12b2f5c49ae781925466990f, type: 3}
-      propertyPath: maxHealth
-      value: 500000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2247642303208508989, guid: f46638ba12b2f5c49ae781925466990f, type: 3}
-      propertyPath: currentLevel
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2247642303208508990, guid: f46638ba12b2f5c49ae781925466990f, type: 3}
       propertyPath: m_Name
       value: LevelMaster

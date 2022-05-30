@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
 
     void Devour()
     {
-        Debug.Log("devouring " + chasedHuman);
+        // Debug.Log("devouring " + chasedHuman);
         isInterruptable = false; // this action is uninterruptable
 
         isDevouring = true;
@@ -211,16 +211,11 @@ public class Player : MonoBehaviour
 
     public void DevourFinished() // called by Ghost Devour animation event
     {
-        if (isDevouring == false)
-        {
-            Debug.Log("NGEBUG");
-            return;
-        }
-        Debug.Log("finished devouring " + chasedHuman);
+        // Debug.Log("finished devouring " + chasedHuman);
 
+        BackToDefaultYValue();
         isDevouring = false;
         UpdateAnimatorParam();
-        BackToDefaultYValue();
 
         healthBar.AddHealth(grantedHealthCache);
         if(grantedHealthCache < 0) { EatenInnocent(); }
@@ -228,22 +223,15 @@ public class Player : MonoBehaviour
         if (chasedHuman != null) { chasedHuman.Die(); } // to avoid bug: Human reference missing midway, bug still not fixed
         else { Debug.Log("THAT bug occured"); }
 
+        
         chasedHuman = null; // delete chache
 
-        isChasing = false;
-        spriteRenderer.sortingOrder = defaultSortingLayer; // back to default 
+        //isChasing = false;
+        //spriteRenderer.sortingOrder = defaultSortingLayer; // back to default 
 
         isInterruptable = true;
         scoreDisplay.IncrementScore();
-        
-        //StartCoroutine(DevourDelay());
     }
-
-/*    IEnumerator DevourDelay()
-    {
-        yield return new WaitForSeconds(0.1f);
-        isInterruptable = true;
-    }*/
 
     void MoveToDevouredHumanYValue(Human chasedHuman)
     {
@@ -262,6 +250,7 @@ public class Player : MonoBehaviour
 
     void UpdateChasedHumanPosition()
     {
+        if(chasedHuman == null) { return; }
         moveDestination = chasedHuman.transform.position.x;
     }
 
