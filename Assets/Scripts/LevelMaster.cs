@@ -165,6 +165,7 @@ public class LevelMaster : MonoBehaviour
 
     public void RestartGame()
     {
+        isPlaying = false;
         currentHealth = maxHealth;
         currentScore = 0;
         ResetTimer();
